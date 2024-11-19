@@ -1,29 +1,46 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import AdminView from "@/views/AdminView.vue";
+import OpinionesView from "@/views/OpinionesView.vue";
+import NotFoundView from "@/views/NotFoundView.vue";
+import SidebarView from "@/views/SidebarView.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    component: HomeView,
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    path: "/admin/:gameName",
+    name: "admin",
+    component: AdminView,
+  },
+  {
+    path: "/opiniones/:id",
+    name: "opiniones",
+    component: OpinionesView,
+  },
+  {
+    path: "/sidebar",
+    name: "sidebar",
+    props: true,
+    component: SidebarView,
+  },
+  {
+    path: "*",
+    name: "notFound",
+    component: NotFoundView,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
